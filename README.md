@@ -1,2 +1,2 @@
-# LibraryManagementSystem
+# Library Management System
 Django
