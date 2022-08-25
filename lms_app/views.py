@@ -8,10 +8,14 @@ def index(request):
         'books':Book.objects.all(),
         'categores':Category.objects.all(), 
     }
-    return render(request, 'pages/index.html',context=context)
+    return render(request, 'pages/index.html',context)
 
 
 def books(request):
-    return render(request, 'pages/books.html')
+    context ={
+        'books':Book.objects.all(),
+        'categores':Category.objects.all(), 
+    }
+    return render(request, 'pages/books.html',context)
 
 
