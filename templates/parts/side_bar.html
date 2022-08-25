@@ -46,8 +46,8 @@
                     </a>
                   </li> 
               <form id="cat" method="POST">
-             
-                  <input type="text" class="form-control">
+                {% csrf_token %}
+                  {{cat_form}}
 
                   <button type="submit" class="btn btn-success">save</button>
                   <button id="backcat" class="btn btn-primary ">back</button>
