@@ -1,4 +1,5 @@
-from django.shortcuts import render
+
+from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 
@@ -31,3 +32,29 @@ def books(request):
 
     }
     return render(request, 'pages/books.html', context)
+
+
+def update(request,  id):
+    book_id = Book.objects.get(id=id)
+    if request.method == 'POST':
+        save_update = BookForms(request.POST, request.FILES, instance=book_id)
+        if save_update.is_valid():
+            save_update.save()
+            return redirect('/')
+    else:
+        save_update=BookForms(instance=book_id)
+        
+    context ={
+        'form':save_update,
+    }
+    return render(request ,'pages/update.html',context)
+
+
+
+def delete(request,id):
+    book_id = Book.objects.get(id=id)
+    if request.method == 'POST':
+        book_id.delete()
+        return redirect('/')
+    
+    return render(request,'pages/delete.html')
